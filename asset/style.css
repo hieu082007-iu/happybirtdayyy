@@ -1,0 +1,508 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffe;
+  font-size: 14px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #231f20;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+a {
+  color: #000;
+  font-size: 14px;
+}
+#main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  padding: 10px 0 25px 0;
+  overflow-x: hidden;
+}
+#scaler {
+  position: relative;
+  width: 1100px;
+  height: 680px;
+  flex-shrink: 0;
+  margin: auto;
+}
+#wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1100px;
+  height: 680px;
+  transform-origin: 0 0;
+}
+#text {
+  width: 400px;
+  height: 425px;
+  left: 60px;
+  top: 80px;
+  position: absolute;
+}
+#code {
+  display: none;
+  font-size: 16px;
+}
+#clock-box {
+  position: absolute;
+  left: 60px;
+  top: 550px;
+  font-size: 28px;
+  display: none;
+}
+#clock-box a {
+  font-size: 28px;
+  text-decoration: none;
+}
+#clock {
+  margin-left: 48px;
+}
+#clock .digit {
+  font-size: 64px;
+}
+#canvas {
+  margin: 0 auto;
+  width: 1100px;
+  height: 680px;
+}
+#error {
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 60px;
+  display: none;
+}
+.hand {
+  cursor: pointer;
+}
+.say {
+  margin-left: 5px;
+}
+.space {
+  margin-right: 150px;
+}
+
+/* ========================================================
+   CÁC TẤM ẢNH POLAROID TREO TRÊN CÂY TÌNH YÊU
+   ======================================================== */
+#tree-photos {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1100px;
+  height: 680px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.polaroid-card {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  width: 118px;
+  background: #ffffff;
+  padding: 8px 8px 12px 8px;
+  border-radius: 5px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s ease;
+  user-select: none;
+}
+
+/* Dây treo từ cành cây */
+.polaroid-card .rope {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 32px;
+  background: repeating-linear-gradient(to bottom, #d48a94, #d48a94 3px, transparent 3px, transparent 6px);
+  pointer-events: none;
+}
+
+/* Ghim kẹp hồng xinh trên đầu ảnh */
+.polaroid-card .pin {
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  background: #ff477e;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.28);
+  z-index: 2;
+}
+
+.polaroid-card .img-wrap {
+  width: 100%;
+  height: 132px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #f7f7f7;
+}
+
+.polaroid-card .img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid-card .caption {
+  margin: 7px 0 0 0;
+  font-size: 11.5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #4a4a4a;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* Tọa độ và trục xoay (transform-origin) gắn theo mấu dây treo */
+.photo-1 {
+  left: 555px;
+  top: 125px;
+  transform-origin: 50% -30px;
+  animation: sway1 4s ease-in-out infinite alternate;
+}
+
+.photo-2 {
+  left: 890px;
+  top: 155px;
+  transform-origin: 50% -30px;
+  animation: sway2 4.6s ease-in-out infinite alternate;
+}
+
+.photo-3 {
+  left: 720px;
+  top: 325px;
+  transform-origin: 50% -30px;
+  animation: sway3 4.2s ease-in-out infinite alternate;
+}
+
+/* Hiệu ứng khi rê chuột vào */
+.polaroid-card:hover {
+  animation-play-state: paused;
+  transform: scale(1.22) rotate(0deg) !important;
+  box-shadow: 0 18px 36px rgba(232, 67, 117, 0.4), 0 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 100 !important;
+}
+
+/* Hiệu ứng đung đưa tự nhiên trong gió */
+@keyframes sway1 {
+  0% { transform: rotate(-7deg); }
+  100% { transform: rotate(-1deg); }
+}
+
+@keyframes sway2 {
+  0% { transform: rotate(2deg); }
+  100% { transform: rotate(7deg); }
+}
+
+@keyframes sway3 {
+  0% { transform: rotate(-5deg); }
+  100% { transform: rotate(1deg); }
+}
+
+/* ========================================================
+   MODAL / LIGHTBOX XEM ẢNH PHÓNG TO SẮC NÉT
+   ======================================================== */
+.img-modal {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 10, 15, 0.75);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background: #ffffff;
+  padding: 14px 14px 18px 14px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 480px;
+  max-height: 90vh;
+  box-sizing: border-box;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+  position: relative;
+  text-align: center;
+  animation: popModalIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popModalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-box img {
+  max-width: 100%;
+  max-height: 68vh;
+  border-radius: 8px;
+  object-fit: contain;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  display: block;
+  margin: 0 auto;
+}
+
+.modal-box p {
+  margin: 14px 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #e84375;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.close-btn {
+  position: absolute;
+  top: 6px;
+  right: 14px;
+  font-size: 28px;
+  line-height: 1;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.close-btn:hover {
+  color: #e84375;
+  transform: scale(1.18);
+}
+
+/* ========================================================
+   GỢI Ý CHẠM TRÁI TIM LÚC MỞ ĐẦU (TAP HINT)
+   ======================================================== */
+.tap-hint {
+  position: absolute;
+  left: 530px;
+  bottom: 85px;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.96);
+  padding: 8px 18px;
+  border-radius: 25px;
+  box-shadow: 0 4px 16px rgba(232, 67, 117, 0.35);
+  border: 1.5px solid #ff477e;
+  z-index: 50;
+  cursor: pointer;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: bounceHint 1.8s infinite ease-in-out;
+  white-space: nowrap;
+}
+
+.tap-hint .tap-pulse {
+  font-size: 18px;
+  animation: heartBeat 0.8s infinite alternate;
+}
+
+.tap-hint .tap-text {
+  font-size: 14px;
+  font-weight: bold;
+  color: #e84375;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+@keyframes bounceHint {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -10px); }
+}
+
+@keyframes heartBeat {
+  from { transform: scale(1); }
+  to { transform: scale(1.25); }
+}
+
+/* ========================================================
+   GỢI Ý XOAY NGANG MÀN HÌNH (ROTATE HINT)
+   ======================================================== */
+.rotate-hint {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid #ffd6e0;
+  box-shadow: 0 4px 18px rgba(232, 67, 117, 0.18);
+  padding: 6px 14px;
+  border-radius: 25px;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #c72c5b;
+  font-weight: 600;
+  white-space: nowrap;
+  animation: fadeInDown 0.5s ease;
+}
+
+.rotate-hint .hint-icon {
+  font-size: 15px;
+  animation: rotatePhone 2.5s infinite ease-in-out;
+}
+
+.rotate-hint .hint-close {
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 6px;
+  color: #aaa;
+  line-height: 1;
+}
+
+.rotate-hint .hint-close:hover {
+  color: #e84375;
+}
+
+@keyframes rotatePhone {
+  0%, 10% { transform: rotate(0deg); }
+  40%, 60% { transform: rotate(-90deg); }
+  90%, 100% { transform: rotate(0deg); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translate(-50%, -15px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* Ẩn thanh xoay màn hình khi màn hình ngang hoặc máy tính */
+@media (orientation: landscape) {
+  .rotate-hint {
+    display: none !important;
+  }
+}
+@media (min-width: 801px) {
+  .rotate-hint {
+    display: none !important;
+  }
+}
+
+/* ========================================================
+   NÚT ĐỌC THƯ RÕ HƠN TRÊN ĐIỆN THOẠI
+   ======================================================== */
+.mobile-read-btn {
+  margin-top: 14px;
+  background: linear-gradient(135deg, #ff6b8b 0%, #ff8e9e 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  padding: 9px 22px;
+  font-size: 13.5px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 107, 139, 0.38);
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mobile-read-btn:active {
+  transform: scale(0.95);
+}
+
+@media (min-width: 800px) {
+  .mobile-read-btn {
+    display: none !important;
+  }
+}
+
+/* ========================================================
+   MODAL ĐỌC THƯ CỠ LỚN (LETTER MODAL)
+   ======================================================== */
+.letter-modal {
+  display: none;
+  position: fixed;
+  z-index: 999999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 10, 15, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  justify-content: center;
+  align-items: center;
+}
+
+.letter-box {
+  background: #fffdfa;
+  padding: 24px 20px 20px 20px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 440px;
+  max-height: 82vh;
+  box-sizing: border-box;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  position: relative;
+  border: 2px solid #ffd6e0;
+  display: flex;
+  flex-direction: column;
+  animation: popModalIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.letter-scroll {
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.letter-title {
+  color: #e84375;
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.letter-scroll p {
+  color: #2b2b2b;
+  font-size: 14.5px;
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+.letter-highlight {
+  color: #e84375 !important;
+  font-weight: bold;
+  text-align: center !important;
+  margin-top: 18px !important;
+}
+
+.letter-sign {
+  text-align: center;
+  margin-top: 12px;
+  color: #555;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+

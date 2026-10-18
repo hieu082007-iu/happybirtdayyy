@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Birthday Phương Anh 🎂</title>
+
+    <link
+        type="text/css"
+        rel="stylesheet"
+        href="./asset/style.css"
+    >
+
+    <script src="./asset/jquery.min.js"></script>
+    <script src="./asset/jscex.min.js"></script>
+    <script src="./asset/jscex-parser.js"></script>
+    <script src="./asset/jscex-jit.js"></script>
+    <script src="./asset/jscex-builderbase.min.js"></script>
+    <script src="./asset/jscex-async.min.js"></script>
+    <script src="./asset/jscex-async-powerpack.min.js"></script>
+    <script
+        type="text/javascript"
+        src="./asset/functions.js"
+        charset="utf-8"
+    ></script>
+    <script
+        type="text/javascript"
+        src="./asset/love.js"
+        charset="utf-8"
+    ></script>
+
+    <style>
+        /* Định dạng lời chúc sinh nhật */
+        #text {
+            font-family: 'Gill Sans', 'Gill Sans MT',
+                Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        #code {
+            color: #000;
+            line-height: 1.8;
+            overflow-wrap: break-word;
+        }
+
+        #code .say {
+            color: #000;
+        }
+
+        #code .birthday-title {
+            color: #e84375;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        #code .heart {
+            color: #ff3366;
+        }
+
+        #code img {
+            object-fit: contain;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Gợi ý xoay màn hình trên điện thoại (tự ẩn khi xoay ngang hoặc trên máy tính) -->
+    <div id="rotate-hint" class="rotate-hint">
+        <span class="hint-icon">📱</span>
+        <span class="hint-text">Xoay ngang màn hình để xem ảnh & cây đẹp nhất nhé!</span>
+        <span class="hint-close" onclick="document.getElementById('rotate-hint').style.display='none'">&times;</span>
+    </div>
+
+    <div id="main">
+        <div id="scaler">
+            <div id="wrap">
+
+            <div id="text">
+
+                <div id="code">
+
+                    <span class="say birthday-title">
+                        🎂 Chúc mừng sinh nhật Phương Anh ❤️
+                    </span>
+
+                    <br><br>
+
+                    <span class="say">
+                        Chúc Phương Anh có một tuổi 18 thật rực rỡ
+                        và nhiều may mắn đến với Phương Anh ạ.
+                    </span>
+
+                    <br><br>
+
+                    <span class="say">
+                        Hy vọng Phương Anh luôn có đủ mạnh mẽ
+                        để vượt qua những ngày khó khăn,
+                        đủ niềm tin để bước tiếp
+                        và luôn có Yên chân thành ở bên cạnh.
+                    </span>
+
+                    <br><br>
+
+                    <span class="say">
+                        Cảm ơn Phương Anh vì đã xuất hiện,
+                        khiến cho cuộc sống của Yên
+                        trở nên đặc biệt hơn rất nhiều.
+                    </span>
+
+                    <br><br>
+
+                    <span class="say">
+                        Chúc Phương Anh sang tuổi mới
+                        luôn xinh xinh đẹp và đáng iu nhiều ạ.
+                    </span>
+
+                    <br><br>
+
+                    <span class="say">
+                        Yên luôn ở cùng Phương Anh
+                        để đón những sinh nhật vui vẻ về sau ạ.
+                    </span>
+
+                    <br><br>
+
+                    <span class="say birthday-title">
+                        🎂 Hép Pi Bớt Đây Tu iu iu iu ❤️
+                    </span>
+
+                    <br><br>
+
+                    <span class="say">
+                        <span class="space">
+                            <img
+                                width="100"
+                                height="100"
+                                src="./image/tym.png"
+                                alt="Trái tim"
+                            >
+                        </span>
+                    </span>
+
+                    <br>
+
+                    <span class="say">
+                        <span class="space"></span>
+                        -- Yên gửi Phương Anh --
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- Gợi ý chạm vào trái tim lúc mở web -->
+            <div id="tap-hint" class="tap-hint">
+                <span class="tap-pulse">❤️</span>
+                <span class="tap-text">Chạm vào trái tim nè!</span>
+            </div>
+
+            <canvas id="canvas" width="1100" height="680">
+                Trình duyệt của bạn không hỗ trợ canvas.
+            </canvas>
+
+            <!-- Khung ảnh kỷ niệm treo trên cây tình yêu -->
+            <div id="tree-photos" style="display: none;">
+                <!-- Dây treo & Ảnh 1 -->
+                <div class="polaroid-card photo-1" onclick="openModal('./image/1.jpg', 'Nụ cười rạng rỡ tuổi 18 🌸')">
+                    <div class="rope"></div>
+                    <div class="pin"></div>
+                    <div class="img-wrap">
+                        <img src="./image/1.jpg" alt="Phương Anh 1">
+                    </div>
+                    <p class="caption">Xinh đẹp ✨</p>
+                </div>
+
+                <!-- Dây treo & Ảnh 2 -->
+                <div class="polaroid-card photo-2" onclick="openModal('./image/2.jpg', 'Khoảnh khắc thật dịu dàng 🌿')">
+                    <div class="rope"></div>
+                    <div class="pin"></div>
+                    <div class="img-wrap">
+                        <img src="./image/2.jpg" alt="Phương Anh 2">
+                    </div>
+                    <p class="caption">Đáng yêu 💕</p>
+                </div>
+
+                <!-- Dây treo & Ảnh 3 -->
+                <div class="polaroid-card photo-3" onclick="openModal('./image/3.jpg', 'Tuổi mới ngập tràn niềm vui & hạnh phúc ❤️')">
+                    <div class="rope"></div>
+                    <div class="pin"></div>
+                    <div class="img-wrap">
+                        <img src="./image/3.jpg" alt="Phương Anh 3">
+                    </div>
+                    <p class="caption">Tuổi 18 rực rỡ 🎂</p>
+                </div>
+            </div>
+
+        </div>
+        </div><!-- /#scaler -->
+
+        <!-- Nút đọc thư cỡ chữ lớn trên điện thoại -->
+        <button id="mobile-read-btn" class="mobile-read-btn" onclick="openLetterModal()" style="display: none;">
+            💌 Đọc trọn vẹn bức thư
+        </button>
+    </div><!-- /#main -->
+
+    <!-- Modal phóng to xem ảnh sắc nét -->
+    <div id="imgModal" class="img-modal" onclick="closeModal()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <img id="modalImg" src="" alt="Ảnh kỷ niệm">
+            <p id="modalCaption"></p>
+        </div>
+    </div>
+
+    <!-- Modal đọc trọn vẹn lời chúc cỡ chữ lớn cho điện thoại -->
+    <div id="letterModal" class="letter-modal" onclick="closeLetterModal()">
+        <div class="letter-box" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeLetterModal()">&times;</span>
+            <div class="letter-scroll">
+                <h3 class="letter-title">🎂 Chúc mừng sinh nhật Phương Anh ❤️</h3>
+                <p>Chúc Phương Anh có một tuổi 18 thật rực rỡ và nhiều may mắn đến với Phương Anh ạ.</p>
+                <p>Hy vọng Phương Anh luôn có đủ mạnh mẽ để vượt qua những ngày khó khăn, đủ niềm tin để bước tiếp và luôn có Yên chân thành ở bên cạnh.</p>
+                <p>Cảm ơn Phương Anh vì đã xuất hiện, khiến cho cuộc sống của Yên trở nên đặc biệt hơn rất nhiều.</p>
+                <p>Chúc Phương Anh sang tuổi mới luôn xinh xinh đẹp và đáng iu nhiều ạ.</p>
+                <p>Yên luôn ở cùng Phương Anh để đón những sinh nhật vui vẻ về sau ạ.</p>
+                <p class="letter-highlight">🎂 Hép Pi Bớt Đây Tu iu iu iu ❤️</p>
+                <div class="letter-sign">
+                    <img width="70" height="70" src="./image/tym.png" alt="Trái tim">
+                    <div>-- Yên gửi Phương Anh --</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nhạc sinh nhật -->
+    <audio id="myAudio" autoplay loop>
+        <source src="./music/nhac.mp3" type="audio/mpeg">
+        Trình duyệt của bạn không hỗ trợ phát nhạc.
+    </audio>
+
+    <script src="./asset/script.js"></script>
+
+</body>
+
+</html>
